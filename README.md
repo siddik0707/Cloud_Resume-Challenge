@@ -22,21 +22,8 @@ The goal of this project was to gain hands-on experience with cloud infrastructu
 
 ## Architecture
 
-User
-↓
-CloudFront
-↓
-S3 Static Website
-↓
-JavaScript Fetch Request
-↓
-API Gateway
-↓
-Lambda Function
-↓
-DynamoDB
-↓
-CloudWatch Logs
+![Architecture Diagram](screenshots/architecture-diagram.png)
+
 
 ---
 
