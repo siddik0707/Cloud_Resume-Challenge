@@ -24,6 +24,8 @@ The goal of this project was to gain hands-on experience with cloud infrastructu
 
 ![Architecture Diagram](screenshots/architecture-diagram.png)
 
+User accesses the resume through CloudFront. Static content is served from S3, while visitor count requests are sent to API Gateway, which invokes Lambda. Lambda updates and retrieves the visitor count from DynamoDB, and CloudWatch stores execution logs.
+
 
 ---
 
