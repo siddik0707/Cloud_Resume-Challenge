@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Node Not Found</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f87171; /* A softer red for errors */
+            --secondary: #6366f1;
+            --dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .error-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .error-icon {
+            font-size: 5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 15px rgba(248, 113, 113, 0.4));
+        }
+
+        h1 {
+            font-size: 6rem;
+            margin: 0;
+            line-height: 1;
+            background: linear-gradient(to right, #f87171, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .description {
+            opacity: 0.7;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2rem;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-home:hover {
+            background: #4f46e5;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.5);
+        }
+
+        .code-snippet {
+            margin-top: 3rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-card">
+        <div class="error-icon">
+            <i class="fas fa-satellite-dish"></i>
+        </div>
+        <h1>404</h1>
+        <h2>Lost in the Cloud?</h2>
+        <p class="description">
+            The object you are looking for has been moved, deleted, or never existed in this S3 bucket.
+        </p>
+
+        <a href="index.html" class="btn-home">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+
+        <div class="code-snippet">
+            HTTP_STATUS_CODE: 404_NOT_FOUND
+        </div>
+    </div>
+
+</body>
+</html>

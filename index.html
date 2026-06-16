@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cloud Resume</title>
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --primary-color: #2563eb;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        h1 {
+            margin: 0 0 10px 0;
+            color: #111827;
+            font-size: 2.5rem;
+        }
+
+        .contact-info {
+            font-size: 0.95rem;
+            color: #4b5563;
+        }
+
+        .counter-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        h2 {
+            color: #1f2937;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skills-category strong {
+            display: block;
+            color: #111827;
+            margin-bottom: 5px;
+        }
+
+        .project,
+        .experience {
+            margin-bottom: 20px;
+        }
+
+        .project-title,
+        .job-title {
+            font-weight: bold;
+            color: #111827;
+            font-size: 1.1rem;
+        }
+
+        .project-tech {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Your Name</h1>
+                <div class="contact-info">
+                    Email: youremail@example.com | LinkedIn: linkedin.com/in/username | GitHub: github.com/username
+                </div>
+            </div>
+            <!-- The Live Visitor Counter Badge -->
+            <div class="counter-box">
+                Views: <span id="counter">Loading...</span>
+            </div>
+        </header>
+
+        <section>
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skills-category">
+                    <strong>Cloud & Infrastructure</strong>
+                    AWS (EC2, VPC, Subnets, Gateways), Linux Systems
+                </div>
+                <div class="skills-category">
+                    <strong>Full-Stack Development</strong>
+                    JavaScript, Node.js, Express, MongoDB, React
+                </div>
+                <div class="skills-category">
+                    <strong>AI & Automation</strong>
+                    Python, Machine Learning Deployment, Streamlit
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Featured Projects</h2>
+
+            <div class="project">
+                <div class="project-title">The Cloud Resume Challenge (This Site)</div>
+                <div class="project-tech">AWS S3, CloudFront, Lambda, DynamoDB, API Gateway, Terraform, GitHub Actions
+                </div>
+                <p>A serverless static resume infrastructure configured completely as code via Terraform. Implements a
+                    CI/CD deployment pipeline via GitHub Actions and features a live visitor counter using a
+                    Python-based Lambda backend.</p>
+            </div>
+
+            <div class="project">
+                <div class="project-title">AI Leaf Disease Diagnosis Application</div>
+                <div class="project-tech">Python, Streamlit, Keras, TensorFlow, Linux</div>
+                <p>Developed an interactive computer vision web application that diagnoses agricultural plant diseases
+                    from image uploads using a custom-trained deep learning model.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Education / Certifications</h2>
+            <div class="experience">
+                <div class="job-title">AWS Certified Cloud Practitioner (Optional/In Progress)</div>
+                <div>Amazon Web Services | Expected 2026</div>
+            </div>
+    </div>
+    </div>
+
+    <script>
+        // ⚠️ REPLACE THIS URL WITH YOUR ACTUAL API GATEWAY ENDPOINT LATER IN THE CHALLENGE
+        const apiEndpoint = "https://86iqim25b6.execute-api.ap-south-1.amazonaws.com/prod/visitor-counter";
+
+        async function updateCounter() {
+            try {
+                // Check if we are running locally or on the default placeholder URL
+                if (apiEndpoint.includes("your-api-id")) {
+                    // Local testing demo mode
+                    document.getElementById("counter").innerText = "Demo Mode (1)";
+                    return;
+                }
+
+                // Real production request to your serverless backend
+                const response = await fetch(apiEndpoint, { method: 'GET' });
+                const data = await response.json();
+                console.log(data);
+
+                // Updates the HTML text with the real number returned by your AWS Lambda
+                document.getElementById("counter").innerText = data.visitorCount;
+            } catch (error) {
+                console.error("Error fetching visitor counter:", error);
+                document.getElementById("counter").innerText = "Error";
+            }
+        }
+
+        // Run the function automatically as soon as the page loads
+        updateCounter();
+    </script>
+
+</body>
+
+</html>
