@@ -1,0 +1,18 @@
+name: Repository Info
+
+on:
+  push:
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show Repository
+        run: echo ${{ github.repository }}
+
+      - name: Show Branch
+        run: echo ${{ github.ref }}
+
+      - name: Show Actor
+        run: echo ${{ github.actor }}
