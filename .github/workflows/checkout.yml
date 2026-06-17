@@ -13,3 +13,6 @@ jobs:
 
       - name: List Files
         run: ls -la
+
+      - name: Show README
+        run: cat README.md
