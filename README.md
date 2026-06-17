@@ -140,8 +140,6 @@ Resolved using CloudFront invalidations:
 
 ## Screenshots
 
-Add screenshots here:
-
 ### Resume Website
 
 ![Resume Screenshot](screenshots/resume.png)
