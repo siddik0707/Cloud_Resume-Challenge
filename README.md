@@ -1,148 +1,285 @@
 # Cloud Resume Challenge
 
-A serverless cloud resume website built on AWS as part of the Cloud Resume Challenge.
-
-## Live Website
-
-Add your CloudFront URL here:
-
-https://d1ljkbb2nvzl2b.cloudfront.net/
-
-Note: This link will be available based on aws free tier duration. Check screen shots below if link is unavailable.
+A fully serverless cloud resume website built on AWS as part of the Cloud Resume Challenge. This project demonstrates cloud infrastructure, serverless computing, API development, CI/CD automation, and frontend-backend integration using AWS services.
 
 ---
 
-## Project Overview
+## 🌐 Live Website
 
-This project hosts a personal resume website using AWS serverless services. It includes a visitor counter that tracks page views in real time using API Gateway, Lambda, and DynamoDB.
+**Live Demo:** https://d1ljkbb2nvzl2b.cloudfront.net/
 
-The goal of this project was to gain hands-on experience with cloud infrastructure, serverless computing, IAM permissions, API development, and frontend-backend integration.
+> Note: The live website is hosted using AWS Free Tier eligible services. If the website becomes unavailable in the future, screenshots and architecture diagrams are provided below.
 
 ---
 
-## Architecture
+## 📖 Project Overview
+
+This project hosts a personal resume website using AWS serverless services. It includes a real-time visitor counter powered by API Gateway, Lambda, and DynamoDB.
+
+The primary objective of this project was to gain hands-on experience with:
+
+* AWS Cloud Services
+* Serverless Architecture
+* IAM and Security
+* API Development
+* Infrastructure Troubleshooting
+* CI/CD Automation
+* Cloud Monitoring
+* Frontend and Backend Integration
+
+---
+
+## 🏗️ Architecture
 
 ![Architecture Diagram](screenshots/architecture-diagram.png)
 
-User accesses the resume through CloudFront. Static content is served from S3, while visitor count requests are sent to API Gateway, which invokes Lambda. Lambda updates and retrieves the visitor count from DynamoDB, and CloudWatch stores execution logs.
+The architecture consists of:
 
+1. Users access the resume website through Amazon CloudFront.
+2. CloudFront serves static content stored in Amazon S3.
+3. JavaScript on the webpage sends requests to API Gateway.
+4. API Gateway invokes an AWS Lambda function.
+5. Lambda updates and retrieves visitor count data from DynamoDB.
+6. CloudWatch stores Lambda execution logs for monitoring and troubleshooting.
 
 ---
 
-## AWS Services Used
+## 🚀 AWS Services Used
 
 ### Amazon S3
-- Hosts the static resume website.
-- Stores HTML, CSS, and JavaScript files.
+
+* Hosts the static resume website
+* Stores website assets (HTML, CSS, JavaScript)
 
 ### Amazon CloudFront
-- Content Delivery Network (CDN).
-- Serves the website globally with caching.
+
+* Global Content Delivery Network (CDN)
+* Improves website performance through caching
+* Provides HTTPS access
 
 ### Amazon API Gateway
-- Provides REST API endpoint for the visitor counter.
+
+* Exposes REST API endpoints
+* Integrates frontend and backend services
 
 ### AWS Lambda
-- Serverless backend that updates and retrieves visitor counts.
+
+* Serverless compute service
+* Processes visitor counter requests
 
 ### Amazon DynamoDB
-- Stores visitor counter data.
+
+* NoSQL database
+* Stores visitor count data
 
 ### AWS IAM
-- Manages permissions between AWS services.
+
+* Manages roles and permissions
+* Secures service interactions
 
 ### Amazon CloudWatch
-- Stores Lambda logs for monitoring and troubleshooting.
+
+* Stores Lambda logs
+* Assists with monitoring and debugging
 
 ---
 
-## Features
+## ✨ Features
 
-- Serverless architecture
-- Static website hosting
-- Global content delivery through CloudFront
-- Visitor counter using DynamoDB
-- REST API using API Gateway
-- Lambda backend integration
-- CloudWatch monitoring
+* Fully serverless architecture
+* Static website hosting
+* Global content delivery with CloudFront
+* Real-time visitor counter
+* REST API implementation
+* DynamoDB integration
+* Lambda backend processing
+* CloudWatch monitoring
+* CI/CD deployment pipeline using GitHub Actions
 
 ---
 
-## Challenges Faced
+## 🔄 Visitor Counter Workflow
+
+1. User opens the website.
+2. JavaScript sends a request to API Gateway.
+3. API Gateway invokes Lambda.
+4. Lambda updates the visitor count in DynamoDB.
+5. DynamoDB returns the updated value.
+6. Lambda returns the response.
+7. JavaScript updates the visitor count displayed on the webpage.
+
+---
+
+## ⚙️ CI/CD Pipeline
+
+This project uses GitHub Actions for automated deployments.
+
+### Deployment Workflow
+
+```text
+Developer Pushes Code
+          ↓
+GitHub Actions Workflow
+          ↓
+Authenticate with AWS
+          ↓
+Upload Website Files to S3
+          ↓
+Create CloudFront Invalidation
+          ↓
+Updated Website Available
+```
+
+### GitHub Actions Used
+
+* actions/checkout
+* aws-actions/configure-aws-credentials
+
+### Benefits
+
+* Automated deployments
+* Faster updates
+* Reduced manual work
+* Consistent deployment process
+
+---
+
+## 🛠️ Skills Demonstrated
+
+* AWS Cloud Architecture
+* Serverless Computing
+* REST API Development
+* IAM and Security Management
+* DynamoDB Integration
+* Lambda Development
+* CloudFront CDN Configuration
+* S3 Static Website Hosting
+* CloudWatch Monitoring
+* Troubleshooting and Debugging
+* CI/CD with GitHub Actions
+* Infrastructure Documentation
+
+---
+
+## 📁 Repository Structure
+
+```text
+cloud-resume-challenge/
+│
+├── website/
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+│
+├── screenshots/
+│
+├── .github/
+│   └── workflows/
+│
+├── lambda.py
+│
+└── README.md
+```
+
+---
+
+## 🔍 Challenges Faced
 
 ### IAM Permission Errors
 
 Encountered:
 
-```
+```text
 AccessDeniedException
 ```
 
-Resolved by adding appropriate DynamoDB permissions to the Lambda execution role.
+Resolution:
+
+* Updated Lambda execution role permissions
+* Added required DynamoDB permissions
+
+---
 
 ### DynamoDB Data Retrieval
 
-Fixed issues related to:
-- Partition key format
-- Item retrieval
-- JSON serialization
+Issues encountered:
+
+* Partition key formatting
+* Item retrieval failures
+* JSON serialization errors
+
+Resolution:
+
+* Corrected table schema usage
+* Implemented Decimal serialization handling
+
+---
 
 ### API Gateway CORS Issues
 
 Encountered browser errors:
 
-```
+```text
 No 'Access-Control-Allow-Origin' header
 ```
 
-Resolved by:
-- Configuring API Gateway CORS
-- Adding OPTIONS method
-- Returning proper headers
+Resolution:
+
+* Enabled CORS in API Gateway
+* Added OPTIONS method
+* Returned required CORS headers
+
+---
 
 ### CloudFront Caching
 
-Website continued serving older JavaScript versions.
+Updated website content was not immediately visible.
 
-Resolved using CloudFront invalidations:
+Resolution:
 
-```
+```text
 /*
 ```
 
----
-
-## Visitor Counter Workflow
-
-1. User opens website.
-2. JavaScript sends request to API Gateway.
-3. API Gateway invokes Lambda.
-4. Lambda updates visitor count in DynamoDB.
-5. Updated count is returned.
-6. Visitor count is displayed on the website.
+CloudFront invalidations were used to refresh cached content.
 
 ---
 
-## Technologies Used
+## 💻 Technologies Used
 
-- HTML
-- CSS
-- JavaScript
-- AWS S3
-- AWS CloudFront
-- AWS Lambda
-- AWS API Gateway
-- AWS DynamoDB
-- AWS IAM
-- AWS CloudWatch
+### Frontend
+
+* HTML
+* CSS
+* JavaScript
+
+### AWS Services
+
+* Amazon S3
+* Amazon CloudFront
+* Amazon API Gateway
+* AWS Lambda
+* Amazon DynamoDB
+* AWS IAM
+* Amazon CloudWatch
+
+### DevOps
+
+* Git
+* GitHub
+* GitHub Actions
 
 ---
 
-## Screenshots
+## 📸 Screenshots
 
 ### Resume Website
 
 ![Resume Screenshot](screenshots/resume.png)
+
+### Architecture Diagram
+
+![Architecture Diagram](screenshots/architecture-diagram.png)
 
 ### API Gateway
 
@@ -162,20 +299,27 @@ Resolved using CloudFront invalidations:
 
 ---
 
-## Future Improvements
+## 🔮 Future Improvements
 
-- GitHub Actions CI/CD
-- Terraform Infrastructure as Code
-- Custom Domain with Route 53
-- HTTPS certificate using ACM
-- Automated deployments
+* Infrastructure as Code using Terraform
+* Custom Domain with Route 53
+* SSL Certificate Management with ACM
+* Automated Infrastructure Provisioning
+* Multi-Environment Deployment (Dev/Prod)
+* Monitoring Dashboards and Alerts
 
 ---
 
-## Author
+## 👤 Author
 
 **Siddik Mulla**
 
-GitHub: https://github.com/YOUR_USERNAME
+GitHub: https://github.com/siddik0707
 
-LinkedIn: https://linkedin.com/in/YOUR_PROFILE
+LinkedIn: https://www.linkedin.com/in/siddik-mulla-b9a692255/
+
+---
+
+## 📜 Acknowledgements
+
+This project was built as part of the Cloud Resume Challenge, a hands-on project designed to develop practical cloud engineering skills through real-world implementation.
