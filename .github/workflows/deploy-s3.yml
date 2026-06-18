@@ -21,7 +21,7 @@ jobs:
           aws-region: ap-south-1
 
       - name: Upload Files to S3
-        run: aws s3 sync . s3://bucket-for-cloud-resume --delete
+        run: aws s3 sync website/ s3://your-bucket --delete
 
       - name: Invalidate CloudFront
         run: |
