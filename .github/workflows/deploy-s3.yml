@@ -22,3 +22,9 @@ jobs:
 
       - name: Upload Files to S3
         run: aws s3 sync . s3://bucket-for-cloud-resume --delete
+
+      - name: Invalidate CloudFront
+        run: |
+            aws cloudfront create-invalidation \
+            --distribution-id YOUR_DISTRIBUTION_ID \
+            --paths "/*"
